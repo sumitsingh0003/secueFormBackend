@@ -22,8 +22,11 @@ const FormSchema = new mongoose.Schema({
 
 const Form = mongoose.model('Form', FormSchema);
 
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json());
+app.use(cors({
+  origin: '*' 
+}));
 
 const encryptData = (data) => {
   return CryptoJS.AES.encrypt(data, 'secret-key').toString();
